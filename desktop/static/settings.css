@@ -1,1 +1,36 @@
-.search-filters{padding:0 20px 17px;border-bottom:1px solid var(--line);font-size:10px;color:var(--muted);display:flex;flex-direction:column;gap:13px}.search-filters>label{display:flex;align-items:center;justify-content:space-between;gap:12px}.search-filters select{font-size:11px;max-width:190px;color:var(--accent);outline-offset:1px}.date-filters{display:flex;align-items:flex-end;gap:7px;flex-wrap:wrap}.date-filters label{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}.date-filters>span{padding-bottom:8px}.date-filters input{width:100%;min-width:0;max-width:145px;font-size:10px;background:#fff;border:1px solid var(--line);padding:6px 4px;border-radius:4px;color:#7a8772}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.source-settings{border-top:1px solid var(--line);padding-top:19px;margin-top:10px}.auto-discover{font-size:12px;display:flex;align-items:center;gap:7px}.source-settings input[type=checkbox]{accent-color:var(--accent)}.source-settings h3{font-size:12px;font-weight:600;margin:24px 0 12px}.source-form{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap}.source-form label{display:flex;flex-direction:column;gap:7px;flex:1;font-size:11px;color:var(--muted);min-width:100px}.source-form select,.source-form input,.source-path-label input{border:1px solid #d8ded5;border-radius:4px;background:#fff;padding:8px;font-size:12px;color:var(--ink);width:100%;max-width:none;margin:0}.source-path-label{display:flex;flex-direction:column;gap:7px;font-size:11px;color:var(--muted);margin-top:15px}.field-help{color:var(--muted);font-size:10px;line-height:1.8;margin:8px 0 12px}.source-add-row{display:flex;justify-content:space-between;gap:14px;align-items:center}.source-add-row span{font-size:11px;color:var(--accent);overflow-wrap:anywhere}.source-add-row span.error{color:#ac694d}.custom-source{margin-top:16px;padding:12px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;gap:10px;font-size:11px}.custom-source .custom-description{min-width:0;flex:1}.custom-description code{display:block;word-break:break-all;color:var(--muted);font:10px/1.6 var(--mono);margin-top:6px}.custom-source .text-button{color:#ad805f}.source-updated{display:block;font-size:10px;color:#98a28e;width:100%;margin-top:3px}.dialog-actions{display:flex;gap:9px}.button.primary{background:var(--accent);border-color:var(--accent);color:#fff}.button.primary:hover{background:#2b563e}.quit-app{margin-top:22px;color:#a38469;font-size:10px}dialog{max-height:90dvh;overflow:auto}#source-details{max-height:27vh}.sidebar{overflow-y:auto;scrollbar-width:thin}.projects{min-height:65px;flex-shrink:1}dialog .dialog-footer{flex-wrap:wrap;gap:14px}.empty-reader .resume-hint{font-size:11px;color:var(--accent);margin-top:20px}.source-detail strong{font-weight:600}#reader{position:relative}@media(max-width:1150px){.search-filters{padding:0 17px 15px}.date-filters{gap:4px}.date-filters input{font-size:10px;padding-inline:2px}}@media(max-width:560px){.search-filters{padding:0 24px 16px}.date-filters{max-width:360px}.source-form{gap:10px}.dialog-actions{width:100%}.source-add-row{align-items:flex-start}}
+/* 搜索筛选区与数据源设置对话框；颜色 token 定义在 style.css。 */
+.search-filters { padding: 0 16px 12px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }
+.search-filters > label { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.search-filters select { max-width: 190px; }
+.date-filters { display: flex; align-items: flex-end; gap: 6px; }
+.date-filters label { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.date-filters > span { padding-bottom: 6px; }
+.date-filters input { width: 100%; min-width: 0; font-size: 12px; background: var(--paper); border: 1px solid var(--line); padding: 4px 6px; border-radius: 6px; color: var(--ink-2); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+.source-settings { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 10px; }
+.auto-discover { font-size: 13px; display: flex; align-items: center; gap: 8px; }
+.source-settings input[type=checkbox] { accent-color: var(--accent); width: 15px; height: 15px; }
+.source-settings h3 { font-size: 14px; font-weight: 650; margin: 20px 0 10px; }
+.source-form { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+.source-form label, .source-path-label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--muted); }
+.source-form label { flex: 1; min-width: 100px; }
+.source-path-label { margin-top: 12px; }
+.source-form select, .source-form input, .source-path-label input { border: 1px solid var(--line); border-radius: 6px; background: var(--paper); padding: 7px 9px; font-size: 13px; color: var(--ink); width: 100%; max-width: none; margin: 0; }
+.source-form input:focus, .source-path-label input:focus { border-color: var(--accent); outline: none; }
+.field-help { color: var(--muted); font-size: 12px; line-height: 1.7; margin: 6px 0 10px; }
+.source-add-row { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.source-add-row span { font-size: 12px; color: var(--accent); overflow-wrap: anywhere; }
+.source-add-row span.error { color: var(--warn); }
+.custom-source { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.custom-source .custom-description { min-width: 0; flex: 1; }
+.custom-description code { display: block; word-break: break-all; color: var(--muted); font: 12px/1.5 var(--mono); margin-top: 4px; }
+.custom-source .text-button { color: var(--warn); }
+.source-updated { display: block; font-size: 12px; color: var(--muted); width: 100%; }
+.dialog-actions { display: flex; gap: 8px; }
+.quit-app { margin-top: 18px; color: var(--warn); font-size: 12px; }
+
+@media (max-width: 560px) {
+  .dialog-actions { width: 100%; }
+  .source-add-row { align-items: flex-start; }
+}
