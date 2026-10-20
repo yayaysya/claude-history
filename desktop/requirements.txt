@@ -1,0 +1,5 @@
+zstandard==0.25.0
+markdown-it-py==4.0.0
+Pygments==2.19.2
+pystray==0.19.5; sys_platform == 'win32'
+Pillow==11.3.0

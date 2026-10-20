@@ -1,3 +1,8 @@
 /target
 __pycache__/
 /history
+/desktop/.venv/
+/desktop/.local/
+/desktop/build/
+/desktop/dist/
+/desktop/*.spec

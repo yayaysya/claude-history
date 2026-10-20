@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>会话记录</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/settings.css">
+  <link rel="stylesheet" href="/syntax.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="heading"><svg class="app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 4h14v12H9l-4 4V4Z"/><path d="M9 8h6M9 12h4"/></svg><h1>会话记录</h1><span class="local-label">本地</span></div>
+    <div class="global-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="search" type="search" placeholder="搜索所有对话、代码和工具输出…" aria-label="搜索全部会话" autocomplete="off"><kbd>Ctrl K</kbd></div>
+    <button id="refresh" class="button refresh-button" title="重新扫描会话目录">↻ <span>刷新记录</span></button>
+  </header>
+  <div class="workbench">
+    <aside class="sidebar" aria-label="筛选会话">
+      <button id="all-sessions" class="nav-item selected"><span class="nav-icon">▤</span><span>全部会话</span><span id="all-count" class="count">0</span></button>
+      <div class="section-label">来源</div>
+      <div id="sources"></div>
+      <div class="section-label project-label">项目 <span id="project-count"></span></div>
+      <input id="project-filter" class="project-filter" placeholder="筛选项目…" aria-label="筛选项目">
+      <nav id="projects" class="projects" aria-label="项目"></nav>
+      <div class="sidebar-bottom"><button id="source-info" class="text-button">⌘ 数据源与索引</button><span>记录保存在你的电脑上</span></div>
+    </aside>
+    <section class="session-panel" aria-label="会话列表">
+      <div class="list-heading"><div><h2 id="list-title">全部会话</h2><span id="result-count">正在读取记录…</span></div><select id="kind-filter" aria-label="会话类型"><option value="">普通对话</option><option value="all">含自动任务与子会话</option></select></div>
+      <div class="search-filters"><label>搜索范围<select id="role-filter" aria-label="搜索消息范围"><option value="">全部内容</option><option value="dialogue">仅对话（不含工具）</option><option value="user">仅我发送的消息</option><option value="assistant">仅助手回复</option><option value="tool">仅工具记录</option></select></label><div class="date-filters"><label>最近活动<input id="date-from" type="date" aria-label="开始日期"></label><span>至</span><label><span class="sr-only">结束日期</span><input id="date-to" type="date" aria-label="结束日期"></label></div></div>
+      <div id="active-filters" class="active-filters" hidden><span id="filter-description"></span><button id="clear-filters" class="text-button">清除</button></div>
+      <div id="session-list" class="session-list" tabindex="0"></div>
+      <button id="more-sessions" class="more-button" hidden>加载更多会话</button>
+      <div class="list-footer"><span id="index-status" role="status">正在建立本地索引…</span><span id="index-dot" class="status-dot working"></span></div>
+    </section>
+    <main id="reader" class="reader">
+      <div id="reader-empty" class="empty-reader"><svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="13" y="12" width="46" height="47" rx="5"/><path d="M23 25h26M23 34h21M23 43h14M45 55l10 10"/></svg><h2>找到那段有用的对话</h2><p>从左侧选择会话，或搜索你记得的关键词。</p><div class="empty-tips"><span><kbd>Ctrl K</kbd> 搜索全部记录</span><span><kbd>Ctrl F</kbd> 在会话中查找</span></div></div>
+      <div id="reader-content" hidden>
+        <header class="reader-header"><button id="back-list" class="text-button">← 会话列表</button><div class="reader-source" id="reader-source"></div><div class="reader-title-row"><h2 id="reader-title"></h2><a id="export" class="button" href="#" download>↓ 导出</a></div><div id="reader-project" class="reader-project"></div><div class="reader-options"><span id="message-total"></span><label><input id="show-tools" type="checkbox">显示工具记录</label><button id="copy-path" class="text-button">复制文件路径</button></div></header>
+        <div class="find-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="find" type="search" placeholder="在此会话中查找…" aria-label="在会话中查找"><span id="match-count"></span><button id="previous-match" class="icon-button" title="上一个匹配" aria-label="上一个匹配">↑</button><button id="next-match" class="icon-button" title="下一个匹配" aria-label="下一个匹配">↓</button></div>
+        <div id="messages" class="messages"></div>
+        <div class="reader-pagination"><button id="previous-page" class="button">↑ 前 100 条</button><span id="page-info"></span><button id="next-page" class="button">后 100 条 ↓</button></div>
+      </div>
+    </main>
+  </div>
+  <dialog id="sources-dialog"><div class="dialog-heading"><h2>数据源与索引</h2><button id="close-dialog" class="icon-button" aria-label="关闭">×</button></div><p class="muted">原始会话只读。移除数据源只会清理本工具的索引。</p><div id="source-details"></div><div id="warnings"></div><div class="source-settings"><label class="auto-discover"><input id="auto-discover" type="checkbox" checked>自动发现 Windows 和 WSL 默认目录</label><div id="custom-sources"></div><h3>添加数据源</h3><div class="source-form"><label>工具<select id="custom-provider"><option>Codex</option><option>Claude Code</option></select></label><label>环境<select id="custom-environment"><option value="Windows">Windows</option><option value="WSL">WSL</option></select></label><label id="distro-field" hidden>发行版<input id="custom-distro" placeholder="例如 Ubuntu" list="wsl-distros"></label><datalist id="wsl-distros"></datalist></div><label class="source-path-label">数据目录<input id="custom-home" placeholder="例如 D:\历史备份\.codex" autocomplete="off"></label><p class="field-help" id="source-help">Codex 请选择包含 sessions 的 .codex 目录；Claude Code 请选择包含 projects 的 .claude 目录。</p><div class="source-add-row"><span id="settings-feedback" role="status"></span><button id="add-source" class="button">添加至列表</button></div></div><div class="dialog-footer"><span id="index-totals"></span><div class="dialog-actions"><button id="dialog-refresh" class="button">重新扫描</button><button id="save-settings" class="button primary">保存设置</button></div></div><button id="quit-app" class="text-button quit-app">退出工具并关闭本机服务</button></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

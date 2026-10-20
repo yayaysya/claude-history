@@ -1,5 +1,10 @@
 # claude-history
 
+> **Windows / WSL graphical browser (this fork):** See
+> [`desktop/README.zh-CN.md`](desktop/README.zh-CN.md). On Windows, run
+> `desktop\launch.cmd` to browse local Codex and Claude Code sessions in a Chinese
+> web interface. This independent Python companion does not require building Rust.
+
 <img src="/meta/screenshot.webp" />
 
 > [!IMPORTANT]
